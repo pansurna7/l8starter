@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lexadev | Blank Page</title>
+  <title>Lexadev | @yield('title')</title>
   @include('BackendAdmin.layouts._asset_header')
   @livewireStyles
 </head>
@@ -19,7 +19,9 @@
             @include('BackendAdmin.layouts.sidebar')
 
             <!-- Content Wrapper. Contains page content -->
-            @yield('content')
+            {{ $slot }}
+            {{-- @yield('content') --}}
+            
             <!-- /.content-wrapper -->
 
             {{-- footer --}}
@@ -28,5 +30,6 @@
             <!-- ./wrapper -->
         </div>
         @include('BackendAdmin.layouts._asset_footer')
+        @livewireScripts
     </body>
 </html>

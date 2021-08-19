@@ -31,9 +31,31 @@
               </p>
             </a>
           </li>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                  Pengaturan Pengguna
+                <i class="right fas fa-star"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.role') }}" class="nav-link active">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-circle nav-icon"></i>
+                  <p>Peran Pengguna</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          
           <li class="nav-item">
-            <a href="{{route('staff.logout')}}" class="nav-link"><i class="fas fa-door-open"></i><p>Keluar Aplikasi</p></a>
-        </li>
+            <a href="{{route('staff.logout')}}" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>Keluar Aplikasi</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
