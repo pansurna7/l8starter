@@ -24,19 +24,6 @@ class AuthController extends Controller
         }else{
             return back()->with('error','Check Username or Password');
         }
-        // $user=Admin::where('email','=',$request->email)->first();
-
-        // if($user){
-        //     if(Hash::check($request->password, $user->password)){
-        //         $request->session()->put('LonggedUser',$user->id);
-        //         return redirect()->route('admin.dashboard');
-        //     }else{
-        //         return back()->with('error','Check  Password');
-        //     }
-
-        // }else{
-        //     return back()->with('error','Check  User Name');
-        // }
 
     }
     public function logout(){

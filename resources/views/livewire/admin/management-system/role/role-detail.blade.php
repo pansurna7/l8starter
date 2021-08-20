@@ -29,33 +29,49 @@
                   <div class="card-body">
                      <div class="form-group">
                         <label for="input_role_name" class="font-weight-bold">
-                           Role name
+                           Nama
                         </label>
                         <input id="input_role_name" value="{{ $role->name }}" name="name" type="text" class="form-control" readonly />
                      </div>
                      <!-- permission -->
                      <div class="form-group">
                         <label for="input_role_permission" class="font-weight-bold">
-                           permission
+                           Hak Akses
                         </label>
                         <div class="row">
                            <!-- list manage name:start -->
+                           @forelse ($submenus as $submenu)
                            <ul class="list-group mx-1">
-                              <li class="list-group-item bg-dark text-white">
-                                 Manage name
-                              </li>
-                              <!-- list permission:start -->
-                              <li class="list-group-item">
-                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox"
-                                       value="" onclick="return false;" checked>
-                                    <label class="form-check-label">
-                                       Role name
-                                    </label>
-                                 </div>
-                              </li>
-                              <!-- list permission:end -->
-                           </ul>
+                                <li class="list-group-item bg-dark text-white">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="" onclick="return true" checked>
+                                        <label class="form-check-label">
+                                            {{$submenu->title}}
+                                        </label>
+                                    </div>
+                                </li>
+                                <!-- list permission:start -->
+                                {{--  @foreach(Spatie\Permission\Models\Hasrole::JoinTablePermission()->where('role_id',$role->id)->where('submenu_id',$submenu->id)->get() as $permission)  --}}
+                                @foreach(App\Models\Hasrole::JoinTablePermission()->where('role_id',$role->id)->where('submenu_id',$submenu->id) as $permission)
+                                    <li class="list-group-item">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="" onclick="return false;" checked>
+                                        <label class="form-check-label">
+                                            {{str_replace("_",' ',$permission->name_indo)}}
+                                        </label>
+                                        </div>
+
+                                    </li>
+                                @endforeach
+                                <!-- list permission:end -->
+                            </ul>
+                           @empty
+                            <strong>
+                                <p>Hak Aksess Tidak Ditemukan</p>
+                            </strong>
+                           @endforelse
                            <!-- list manage name:end  -->
                         </div>
                      </div>

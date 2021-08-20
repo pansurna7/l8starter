@@ -35,7 +35,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                  Pengaturan Pengguna
+                  Pengaturan Aplikasi
                 <i class="right fas fa-star"></i>
               </p>
             </a>
@@ -46,10 +46,10 @@
                   <p>Peran Pengguna</p>
                 </a>
               </li>
-              
+
             </ul>
           </li>
-          
+
           <li class="nav-item">
             <a href="{{route('staff.logout')}}" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
