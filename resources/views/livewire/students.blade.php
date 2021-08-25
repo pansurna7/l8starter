@@ -2,7 +2,7 @@
     @section('title')
     Wewenang Pengguna
     @endsection
-    @include('livewire.admin.management-system.role.role-add')
+    @include('livewire.student-create')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -42,7 +42,7 @@
                                </form>
                             </div>
                             <div class="col-md-6">
-                               <a  class="btn btn-success float-right" data role="button" data-toggle="modal" data-target="#roleModalAdd" wire:click.prevent="submenu()">
+                               <a  class="btn btn-success float-right" data role="button" wire:click.prevent="restInputFields()" data-toggle="modal" data-target="#addStudentModal">
                                   Tambah Data
                                   <i class="fas fa-plus-square"></i>
                                </a>
@@ -93,4 +93,21 @@
         <!-- /.content -->
     </div>
 
+
 </div>
+
+@push('scripts')
+    <script>
+        window.livewire.on('roleAdd',()=>{
+            $('#addStudentModal').modal('hide');
+        })
+        window.addEventListener('alert', event => {
+            toastr[event.detail.type](event.detail.message,
+            event.detail.title ?? ''), toastr.options = {
+                   "closeButton": true,
+                   "progressBar": true,
+               }
+           });
+    </script>
+
+    @endpush

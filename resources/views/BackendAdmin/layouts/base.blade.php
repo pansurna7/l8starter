@@ -21,7 +21,7 @@
             <!-- Content Wrapper. Contains page content -->
             {{ $slot }}
             {{-- @yield('content') --}}
-            
+
             <!-- /.content-wrapper -->
 
             {{-- footer --}}
@@ -31,5 +31,6 @@
         </div>
         @include('BackendAdmin.layouts._asset_footer')
         @livewireScripts
+        @stack('scripts')
     </body>
 </html>
