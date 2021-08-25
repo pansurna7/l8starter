@@ -5,4 +5,6 @@
 <link rel="stylesheet" href="{{asset('asset/Admin/source/dist/plugin/fontawesome-free/css')}}/all.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('asset/Admin/source/dist/css')}}/adminlte.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+
 </head>

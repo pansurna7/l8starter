@@ -16,7 +16,7 @@ class SudahLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has('LonggedUser') && (url('staff/staff-login')== $request->url())){
+        if(session()->has('LonggedUser') && (url('admin/staff-login')== $request->url())){
             return back();
         }
         return $next($request);

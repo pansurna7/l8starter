@@ -25,13 +25,13 @@ Route::prefix('admin')->group(function(){
     Route::get('/staff-login',[AuthController::class,'index'])->name('staff.login')->middleware('SudahLogin');
     Route::post('/check',[AuthController::class,'check'])->name('auth.check');
     Route::get('/staff-logout',[AuthController::class,'logout'])->name('staff.logout')->middleware('admin');
-    
+
 });
 Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/dashboard',DashboardComponent::class)->name('staff.dashboard');
     Route::get('/role',RoleIndex::class)->name('admin.role');
     Route::get('/role-detail/{idr}',RoleDetail::class)->name('admin.role.detail');
 
-}); 
+});
 
 

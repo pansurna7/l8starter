@@ -2,6 +2,7 @@
     @section('title')
     Wewenang Pengguna
     @endsection
+    @include('livewire.admin.management-system.role.role-add')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -41,7 +42,7 @@
                                </form>
                             </div>
                             <div class="col-md-6">
-                               <a href="#" class="btn btn-primary float-right" role="button">
+                               <a  class="btn btn-success float-right" data role="button" data-toggle="modal" data-target="#roleModalAdd" wire:model="submenus">
                                   Tambah Data
                                   <i class="fas fa-plus-square"></i>
                                </a>
@@ -50,11 +51,11 @@
                       </div>
                       <div class="card-body">
                          <ul class="list-group list-group-flush">
-                            <!-- list role -->   
-                           @forelse($roles as $role )                                                            
+                            <!-- list role -->
+                           @forelse($roles as $role )
                                 <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center pr-0">
                                  <label class="mt-auto mb-auto">
-                                 <!-- Role name -->   
+                                 <!-- Role name -->
                                  {{ $role->name }}
                                  </label>
                                     <div>
@@ -74,14 +75,14 @@
                                           </button>
                                        </form>
                                     </div>
-                              </li> 
-                              @empty 
+                              </li>
+                              @empty
                               <p>
                                  <strong>
                                     Wewenang  Pengguna Belum Ada
                                  </strong>
-                              </p>                            
-                           @endforelse 
+                              </p>
+                           @endforelse
                            <!-- list role -->
                          </ul>
                       </div>

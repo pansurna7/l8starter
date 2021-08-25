@@ -28,7 +28,9 @@ class Hasrole extends Model
         $result = DB::table('role_has_permissions as a')
                 ->join('permissions as b','a.permission_id','=','b.id')
                 ->join('submenu as c','b.submenu_id','=','c.id')
-                ->select('b.name_indo','a.role_id','b.submenu_id')
+                ->select('b.name','b.name_ind','a.role_id','b.submenu_id','b.id')
+                ->groupBy('b.id')
+                ->orderBy('b.id','ASC')
                 ->get();
         return $result;
      }
