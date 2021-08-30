@@ -50,7 +50,7 @@
                                 @foreach (App\Models\Hasrole::JoinTablePermission()->where('submenu_id',$submenu->id)  as $permission )
                                     <li class="list-group-item">
                                         <div class="form-check">
-                                            <input class="form-check-input"type="checkbox" value="{{ $permission->id }}" {{ (in_array($permission->id, old('permissions', [])) || isset($role) && $role->permissions->contains($permission->id)) ? "checked" : false }} onclick="return false;">
+                                            <input class="form-check-input"type="checkbox" value="{{ $permission->id }}" {{ (in_array($permission->id, old('permission', [])) || isset($role) && $role->permissions->contains($permission->id)) ? "checked" : false }} onclick="return false;">
                                             <label class="form-check-label">
                                                 {{$permission->name_ind}}
                                             </label>

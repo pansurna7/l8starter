@@ -10,6 +10,7 @@ class Students extends Component
 {
     public $name;
     public $idr;
+
     public function restInputFields(){
 
         $this->name = '';
@@ -30,16 +31,17 @@ class Students extends Component
     }
     public function store(){
         $this->validate();
-        Role::create([
-            'name' => $this->name,
-        ]);
-        $this->emit('roleAdd');
-        $this->restInputFields();
-        $this->alertSuccess();
+        // Role::create([
+        //     'name' => $this->name,
+        // ]);
+        // $this->emit('roleAdd');
+        // $this->restInputFields();
+        // $this->alertSuccess();
     }
     public function render()
     {
         $roles=Role::orderBy('id','ASC')->get();
+
         return view('livewire.students',['roles'=>$roles])->layout('BackendAdmin/layouts/base');
     }
 }

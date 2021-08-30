@@ -6,6 +6,6 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('asset/Admin/source/dist/css')}}/adminlte.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css"/>
 
 </head>

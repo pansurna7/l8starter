@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Livewire\Admin\ManagementSystem\Role\RoleIndex;
+use App\Http\Livewire\Admin\ManagementSystem\Role\RoleComponent;
 use App\Http\Livewire\Admin\ManagementSystem\DashboardComponent;
 use App\Http\Livewire\Admin\ManagementSystem\Role\RoleDetail;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +30,7 @@ Route::prefix('admin')->group(function(){
 });
 Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/dashboard',DashboardComponent::class)->name('staff.dashboard');
-    Route::get('/role',RoleIndex::class)->name('admin.role');
+    Route::get('/role',RoleComponent::class)->name('admin.role');
 
     Route::get('/role-detail/{idr}',RoleDetail::class)->name('admin.role.detail');
 

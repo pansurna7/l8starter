@@ -18,8 +18,8 @@
        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" wire:click.prevent="store()">Save Data</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Close</button>
+        <button type="button" class="btn btn-primary" wire:click.prevent="store()"><i class="fa fa-save"></i>Save Data</button>
       </div>
     </div>
   </div>

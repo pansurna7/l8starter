@@ -3,6 +3,7 @@
     Wewenang Pengguna
     @endsection
     @include('livewire.admin.management-system.role.role-add')
+    @include('livewire.admin.management-system.role.role-update')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -42,7 +43,7 @@
                                </form>
                             </div>
                             <div class="col-md-6">
-                               <a  class="btn btn-success float-right" data role="button" data-toggle="modal" data-target="#roleModalAdd" wire:click.prevent="submenu()">
+                               <a  class="btn btn-success float-right" data role="button" data-toggle="modal" data-target="#roleModalAdd" wire:click.prevent="restInputFields()">
                                   Tambah Data
                                   <i class="fas fa-plus-square"></i>
                                </a>
@@ -65,7 +66,7 @@
                                        <i class="fas fa-eye"></i>
                                        </a>
                                        <!-- edit -->
-                                       <a class="btn btn-sm btn-info" role="button">
+                                       <a class="btn btn-sm btn-info" role="button" wire:click.prevent="edit({{$role->id}})" data-toggle="modal" data-target="#roleModalUpdate">
                                           <i class="fas fa-edit"></i>
                                        </a>
                                        <!-- delete -->
@@ -92,5 +93,14 @@
         </div>
         <!-- /.content -->
     </div>
-
 </div>
+@push('scripts')
+    <script>
+        window.livewire.on('roleAdd',()=>{
+            $('#roleModalAdd').modal('hide');
+        })
+        window.livewire.on('roleUpdate',()=>{
+            $('#roleModalUpdate').modal('hide');
+        })
+    </script>
+@endpush
