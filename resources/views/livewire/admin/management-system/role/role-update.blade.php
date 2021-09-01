@@ -10,21 +10,21 @@
                     <div class="col-md-12">
                        <div class="card">
                             <form wire:submit.prevent="update">
-                                <input type="text" name="id" wire:model="idr">
+                                <input type="hidden" name="id" wire:model="idr">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="input_role_name" class="font-weight-bold text-danger">
                                             Peran Pengguna*
                                         </label>
-                                        <input id="input_role_name" value="{{old('role_name')}}"   type="text" class="form-control @error("role_name") is-invalid @enderror"  wire:model="role_name"  readonly/>
-                                        @error('role_name') <span class="error text-danger"><strong>{{ $message }}</strong></span> @enderror
+                                        <input id="input_role_name" value="{{old('role_name')}}"   type="text" class="form-control @error("role_name_update") is-invalid @enderror"  wire:model="role_name_update"  readonly/>
+                                        @error('role_name_update') <span class="error text-danger"><strong>{{ $message }}</strong></span> @enderror
                                     </div>
                                     <!-- permission -->
                                     <div class="form-group">
                                         <label for="input_role_permission" class="font-weight-bold text-danger">
                                             Hak Akses
                                         </label>
-                                        <div class="form-control overflow-auto h-100  @error('hakakses') is-invalid @enderror" id="input_role_permission">
+                                        <div class="form-control overflow-auto h-100  @error('selectedpermissions') is-invalid @enderror" id="input_role_permission">
                                             <div class="row">
                                                 <!-- list manage name:start -->
                                                  @foreach ($submenus as $submenu )
@@ -52,11 +52,11 @@
                                                 <!-- list manage name:end  -->
                                              </div>
                                         </div>
-                                        @error('hakakses') <span class="text-danger"><strong>{{ $message }}</strong></span> @enderror
+                                        @error('selectedpermissions') <span class="text-danger"><strong>{{ $message }}</strong></span> @enderror
                                 </div>
                                     </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"  data-dismiss="modal" wire:model="restInputFields">Close</button>
                                     <button type="submit" class="btn btn-primary">Simpan Data</button>
                                 </div>
                           </form>
