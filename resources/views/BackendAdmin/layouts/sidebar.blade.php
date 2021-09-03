@@ -35,7 +35,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                  Pengaturan Aplikasi
+                  Pengaturan Pengguna
                 <i class="right fas fa-star"></i>
               </p>
             </a>
@@ -44,6 +44,12 @@
                 <a href="{{ route('admin.role') }}" class="nav-link active">
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-circle nav-icon"></i>
                   <p>Peran Pengguna</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.pengguna') }}" class="nav-link active">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-circle nav-icon"></i>
+                  <p>Pengguna</p>
                 </a>
               </li>
 

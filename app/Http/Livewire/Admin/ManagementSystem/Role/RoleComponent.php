@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Permission;
 
 
 
+
 class RoleComponent extends Component
 {
     public $idr;
@@ -17,7 +18,6 @@ class RoleComponent extends Component
     public $role_name;
     public $role_name_update;
     public $hakakses=[];
-    public $menu_id=[];
     public $selectedpermissions=[];
     public $selectedrole;
     public $checkall;

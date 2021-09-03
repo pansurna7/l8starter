@@ -55,6 +55,14 @@
                     message: event.detail.message,
                 });
             });
+            window.addEventListener('pesanError',event=>{
+                iziToast.error({
+                    title: 'Uppsss',
+                    timeout: 5000,
+                    position: 'center',
+                    message: event.detail.message,
+                });
+            });
             window.addEventListener('pesanSimpan',event=>{
                 iziToast.success({
                     title: 'Berhasil',

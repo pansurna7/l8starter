@@ -53,7 +53,7 @@
                                 </div>
                                     </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Close</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-undo-alt"></i>Kembali</button>
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan Data</button>
                                 </div>
                           </form>
