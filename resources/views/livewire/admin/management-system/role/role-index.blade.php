@@ -60,7 +60,7 @@
                                             <!-- edit -->
                                             <a class="btn btn-sm btn-info" role="button" wire:click.prevent="edit({{$role->id}})" data-toggle="modal" data-target="#roleModalUpdate"><i class="fas fa-edit"></i></a>
                                             <!-- delete -->
-                                            <a class="btn btn-sm btn-danger"  wire:click.prevent="delete({{$role->id}})"><i class="fas fa-trash"></i></a>
+                                            <button class="btn btn-sm btn-danger"  wire:click.prevent="konfirmasiHapusRole({{ $role->id }})"><i class="fas fa-trash"></i></button>
                                         </div>
                                     </li>
                                 @empty

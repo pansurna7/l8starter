@@ -21,6 +21,8 @@ class RoleComponent extends Component
     public $selectedpermissions=[];
     public $selectedrole;
     public $checkall;
+    public $RoleIdAkanDihapus=null;
+    protected $listeners=['konfirmasiHapus'=>'hapusRole'];
     protected $rules = [
         'role_name'             => 'required|string|max:40|unique:roles,name',
         'hakakses'              => 'required',
@@ -96,11 +98,14 @@ class RoleComponent extends Component
             $this->dispatchBrowserEvent('pesanUpdate',['message'=>'Data Peran Pengguna  Berhasil Diubah']);
         }
     }
-    public function delete(){
-        $this->dispatchBrowserEvent('KonfirmasiHapus',['message'=>'Yakin Menghapus Data']);
-        // if($id){
-        //     Role::where('id',$id)->delete;
-        // }
+    public function konfirmasiHapusRole($id){
+        $this->RoleIdAkanDihapus=$id;
+        $this->dispatchBrowserEvent('tampil-hapus-konfirmasi');
+    }
+    public function hapusRole(){
+           $role=Role::findOrFail($this->RoleIdAkanDihapus);
+           $role->delete();
+           $this->dispatchBrowserEvent('pesanHapus',['message'=>'Data Role  Berhasil Dihapus']);
     }
 
     public function render()
