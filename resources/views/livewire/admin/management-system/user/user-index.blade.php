@@ -3,6 +3,7 @@
     Pengguna
     @endsection
     @include('livewire.admin.management-system.user.user-add')
+    @include('livewire.admin.management-system.user.user-update')
      <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -64,9 +65,9 @@
                                                 <!-- detail -->
                                                 <a href="" class="btn btn-sm btn-primary" role="button"><i class="fas fa-eye"></i> </a>
                                                 <!-- edit -->
-                                                <a class="btn btn-sm btn-info" role="button" wire:click.prevent="" data-toggle="modal" data-target=""><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-sm btn-info" role="button" wire:click.prevent="edit({{ $user->id }})" data-toggle="modal" data-target="#userModalUpdate"><i class="fas fa-edit"></i></a>
                                                 <!-- delete -->
-                                                <button class="btn btn-sm btn-danger"  wire:click.prevent=""><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-sm btn-danger"  wire:click.prevent="konfirmasiHapusUser({{ $user->id }})"><i class="fas fa-trash"></i></button>
                                                </td>
                                             </tr>
                                         @empty
@@ -108,8 +109,8 @@
         window.livewire.on('userAdd',()=>{
             $('#userModalAdd').modal('hide');
         })
-        window.livewire.on('roleUpdate',()=>{
-            $('#roleModalUpdate').modal('hide');
+        window.livewire.on('userUpdate',()=>{
+            $('#userModalUpdate').modal('hide');
         })
 
     </script>

@@ -17,6 +17,10 @@ class UserComponent extends Component
     public $role;
     public $password;
     public $confpassword;
+    public $idu;
+    public $selectedrole;
+    public $UserIDAkanDihapus=null;
+    protected $listeners=['konfirmasiHapus'=>'hapusUser'];
 
     public function resetForm(){
         $this->nama='';
@@ -71,7 +75,81 @@ class UserComponent extends Component
 
     }
     public function edit($id){
-        
+        $this->resetForm();
+        $user=Admin::find($id);
+        $this->idu=$user->id;
+        $this->nama=$user->name;
+        $this->email=$user->email;
+        $this->selectedrole=$user->roles->pluck('id');        
+    }
+    public function update(){
+        $user=Admin::find($this->idu);
+        DB::beginTransaction();
+        if(empty($this->password)){
+            $this->validate([
+                'nama'=>'required|string|max:30',
+                'selectedrole'=>'required',
+                'email' => 'required|email|unique:admins,email,'.$user->id,
+                // 'filename'=>'mimes:zip,rar,tar.gz|max:2000',
+            ],
+            [
+                'nama.required' => 'Nama Harus Di Isi',
+                'nama.string' => 'Nama Harus Berupa Huruf',
+                'nama.max' => 'Panjang Karakter Maximal 20',
+                'role.required'=>'Pilih Salah Satu Peran Pengguna',
+                'email.required' => 'Email Harus Di Isi',
+                'email.email' => 'Format Email Salah',
+                'email.unique' => 'Email Sudah Terdaftar', 
+            ]);
+            $this->password=$user->password;        
+        }else{
+            $this->validate([
+                'nama'=>'required|string|max:30',
+                'selectedrole'=>'required',
+                'email' => 'required|email|unique:admins,email,'.$user->id,
+                'password'=>'required|min:6|same:confpassword',
+                'confpassword'=>'same:password',
+                // 'filename'=>'mimes:zip,rar,tar.gz|max:2000',
+            ],
+            [
+                'nama.required' => 'Nama Harus Di Isi',
+                'nama.string' => 'Nama Harus Berupa Huruf',
+                'nama.max' => 'Panjang Karakter Maximal 20',
+                'role.required'=>'Pilih Salah Satu Peran Pengguna',
+                'email.required' => 'Email Harus Di Isi',
+                'email.email' => 'Format Email Salah',
+                'email.unique' => 'Email Sudah Terdaftar',          
+                'password.same' => 'Kata Sandi Tidak Sama',
+                'confpassword.same' => 'Kata Sandi Tidak Sama',
+            ]);
+            
+        }
+        try {            
+            $user->update([
+                'name'=>$this->nama,
+                'email'=>$this->email,
+                'password'=>Hash::make($this->password),
+            ]);           
+            $user->syncRoles($this->selectedrole);            
+            $this->emit('userUpdate');
+            $this->resetForm();
+            $this->dispatchBrowserEvent('pesanUpdate',['message'=>'Data Pengguna  Berhasil Diubah']);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->dispatchBrowserEvent('pesanError',['message'=> $th->getMessage()]);
+
+        }finally{
+            DB::commit();
+        }            
+    }
+    public function konfirmasiHapusUser($id){
+    $this->UserIDAkanDihapus=$id;
+    $this->dispatchBrowserEvent('tampil-hapus-konfirmasi');
+    }
+    public function hapusUser(){
+           $user=Admin::findOrFail($this->UserIDAkanDihapus);
+           $user->delete();
+           $this->dispatchBrowserEvent('pesanHapus',['message'=>'Data User Berhasil Dihapus']);
     }
 
     public function render()
