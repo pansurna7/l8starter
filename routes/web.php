@@ -40,4 +40,3 @@ Route::prefix('admin')->middleware('admin')->group(function(){
 });
 
 
-

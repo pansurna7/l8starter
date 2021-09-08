@@ -29,10 +29,12 @@
 
                         <div class="card-body">
                             <table id="tblUser" class="table table-bordered table-striped">
-                                <a  class="btn btn-success float-right" data role="button" data-toggle="modal" data-target="#userModalAdd" wire:click.prevent="resetForm">
-                                    Tambah Data
-                                    <i class="fas fa-plus-square"></i>
-                                </a>
+                                @if(Auth::guard('admin')->user()->can('user_create'))
+                                    <a  class="btn btn-success float-right" data role="button" data-toggle="modal" data-target="#userModalAdd" wire:click.prevent="resetForm">
+                                        Tambah Data
+                                        <i class="fas fa-plus-square"></i>
+                                    </a>
+                                @endif
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -63,11 +65,17 @@
                                                 </td>
                                                <td>
                                                 <!-- detail -->
-                                                <a href="" class="btn btn-sm btn-primary" role="button"><i class="fas fa-eye"></i> </a>
+                                                @if(Auth::guard('admin')->user()->can('user_detail'))
+                                                    <a href="" class="btn btn-sm btn-primary" role="button"><i class="fas fa-eye"></i> </a>
+                                                @endif
                                                 <!-- edit -->
-                                                <a class="btn btn-sm btn-info" role="button" wire:click.prevent="edit({{ $user->id }})" data-toggle="modal" data-target="#userModalUpdate"><i class="fas fa-edit"></i></a>
+                                                @if(Auth::guard('admin')->user()->can('user_update'))
+                                                    <a class="btn btn-sm btn-info" role="button" wire:click.prevent="edit({{ $user->id }})" data-toggle="modal" data-target="#userModalUpdate"><i class="fas fa-edit"></i></a>
+                                                @endif
                                                 <!-- delete -->
-                                                <button class="btn btn-sm btn-danger"  wire:click.prevent="konfirmasiHapusUser({{ $user->id }})"><i class="fas fa-trash"></i></button>
+                                                @if(Auth::guard('admin')->user()->can('user_delete'))
+                                                    <button class="btn btn-sm btn-danger"  wire:click.prevent="konfirmasiHapusUser({{ $user->id }})"><i class="fas fa-trash"></i></button>
+                                                @endif
                                                </td>
                                             </tr>
                                         @empty

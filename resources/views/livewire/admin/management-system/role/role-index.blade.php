@@ -41,10 +41,12 @@
                                     </form>
                                 </div>
                                 <div class="col-md-6">
-                                    <a  class="btn btn-success float-right" data role="button" data-toggle="modal" data-target="#roleModalAdd" wire:click.prevent="restInputFields()">
-                                        Tambah Data
-                                        <i class="fas fa-plus-square"></i>
-                                    </a>
+                                    @if(Auth::guard('admin')->user()->can('role_create'))
+                                        <a  class="btn btn-success float-right" data role="button" data-toggle="modal" data-target="#roleModalAdd" wire:click.prevent="restInputFields()">
+                                            Tambah Data
+                                            <i class="fas fa-plus-square"></i>
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -56,11 +58,18 @@
                                         <label class="mt-auto mb-auto">{{ $role->name }}</label>
                                         <div>
                                             <!-- detail -->
-                                            <a href="{{ route('admin.role.detail',['idr'=>$role->id]) }}" class="btn btn-sm btn-primary" role="button"><i class="fas fa-eye"></i> </a>
+
+                                            @if(Auth::guard('admin')->user()->can('role_detail'))
+                                                <a href="{{ route('admin.role.detail',['idr'=>$role->id]) }}" class="btn btn-sm btn-primary" role="button"><i class="fas fa-eye"></i> </a>
+                                            @endif
                                             <!-- edit -->
-                                            <a class="btn btn-sm btn-info" role="button" wire:click.prevent="edit({{$role->id}})" data-toggle="modal" data-target="#roleModalUpdate"><i class="fas fa-edit"></i></a>
-                                            <!-- delete -->
-                                            <button class="btn btn-sm btn-danger"  wire:click.prevent="konfirmasiHapusRole({{ $role->id }})"><i class="fas fa-trash"></i></button>
+                                            @if(Auth::guard('admin')->user()->can('role_update'))
+                                                <a class="btn btn-sm btn-info" role="button" wire:click.prevent="edit({{$role->id}})" data-toggle="modal" data-target="#roleModalUpdate"><i class="fas fa-edit"></i></a>
+                                            @endif
+                                                <!-- delete -->
+                                            @if(Auth::guard('admin')->user()->can('role_delete'))
+                                                <button class="btn btn-sm btn-danger"  wire:click.prevent="konfirmasiHapusRole({{ $role->id }})"><i class="fas fa-trash"></i></button>
+                                            @endif
                                         </div>
                                     </li>
                                 @empty

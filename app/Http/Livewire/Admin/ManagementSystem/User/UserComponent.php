@@ -3,10 +3,12 @@
 namespace App\Http\Livewire\Admin\ManagementSystem\User;
 
 use App\Models\Admin;
+use Illuminate\Auth\Middleware\Authorize;
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -80,7 +82,7 @@ class UserComponent extends Component
         $this->idu=$user->id;
         $this->nama=$user->name;
         $this->email=$user->email;
-        $this->selectedrole=$user->roles->pluck('id');        
+        $this->selectedrole=$user->roles->pluck('id');
     }
     public function update(){
         $user=Admin::find($this->idu);
@@ -99,9 +101,9 @@ class UserComponent extends Component
                 'role.required'=>'Pilih Salah Satu Peran Pengguna',
                 'email.required' => 'Email Harus Di Isi',
                 'email.email' => 'Format Email Salah',
-                'email.unique' => 'Email Sudah Terdaftar', 
+                'email.unique' => 'Email Sudah Terdaftar',
             ]);
-            $this->password=$user->password;        
+            $this->password=$user->password;
         }else{
             $this->validate([
                 'nama'=>'required|string|max:30',
@@ -118,19 +120,19 @@ class UserComponent extends Component
                 'role.required'=>'Pilih Salah Satu Peran Pengguna',
                 'email.required' => 'Email Harus Di Isi',
                 'email.email' => 'Format Email Salah',
-                'email.unique' => 'Email Sudah Terdaftar',          
+                'email.unique' => 'Email Sudah Terdaftar',
                 'password.same' => 'Kata Sandi Tidak Sama',
                 'confpassword.same' => 'Kata Sandi Tidak Sama',
             ]);
-            
+
         }
-        try {            
+        try {
             $user->update([
                 'name'=>$this->nama,
                 'email'=>$this->email,
                 'password'=>Hash::make($this->password),
-            ]);           
-            $user->syncRoles($this->selectedrole);            
+            ]);
+            $user->syncRoles($this->selectedrole);
             $this->emit('userUpdate');
             $this->resetForm();
             $this->dispatchBrowserEvent('pesanUpdate',['message'=>'Data Pengguna  Berhasil Diubah']);
@@ -140,7 +142,7 @@ class UserComponent extends Component
 
         }finally{
             DB::commit();
-        }            
+        }
     }
     public function konfirmasiHapusUser($id){
     $this->UserIDAkanDihapus=$id;
@@ -152,11 +154,22 @@ class UserComponent extends Component
            $this->dispatchBrowserEvent('pesanHapus',['message'=>'Data User Berhasil Dihapus']);
     }
 
+
+
     public function render()
     {
-        $roles=Role::all();
-        $data = Admin::orderBy('id','ASC')->get();
-        // with i fungsinya untuk nomor urut di table
-        return view('livewire.admin.management-system.user.user-index',['data'=>$data,'roles'=>$roles])->with('i')->layout('BackendAdmin/layouts/base');
+        if(Auth::guard('admin')->user()->can('user_show')){
+            $roles=Role::all();
+            $data = Admin::orderBy('id','ASC')->get();
+            // with i fungsinya untuk nomor urut di table
+            return view('livewire.admin.management-system.user.user-index',['data'=>$data,'roles'=>$roles])->with('i')->layout('BackendAdmin/layouts/base');
+
+        }else{
+
+            abort('403', 'Anda Tidak Punya Akses Ke Halaman Ini.');
+        }
+
+
+
     }
 }

@@ -40,18 +40,22 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('admin.role') }}" class="nav-link active">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-circle nav-icon"></i>
-                  <p>Peran Pengguna</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.pengguna') }}" class="nav-link active">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-circle nav-icon"></i>
-                  <p>Pengguna</p>
-                </a>
-              </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.role') }}" class="nav-link active">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-circle nav-icon"></i>
+                        <p>Wewenang</p>
+                        </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pengguna') }}" class="nav-link active">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-circle nav-icon"></i>
+                        <p>Pengguna</p>
+                        </a>
+                    </li>
+
 
             </ul>
           </li>

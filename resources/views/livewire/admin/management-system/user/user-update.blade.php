@@ -11,7 +11,7 @@
                        <div class="card">
                           <div class="card-body">
                              <form wire:submit.prevent="update">
-                                <input type="text" wire:model="idu">
+                                <input type="hidden" wire:model="idu">
                                 <!-- name -->
                                 <div class="form-group">
                                    <label for="input_user_name" class="font-weight-bold">
